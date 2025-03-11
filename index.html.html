@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gurukul</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; color: white; text-align: center; overflow: hidden; }
+        .video-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: -1; }
+        video { width: 100vw; height: 100vh; object-fit: cover; }
+        .overlay { position: relative; width: 100%; height: 100vh; background: rgba(0, 0, 0, 0.5); display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .nav { position: absolute; top: 10px; width: 100%; display: flex; justify-content: center; gap: 20px; }
+        .nav a { color: white; text-decoration: none; font-size: 18px; padding: 10px 20px; background: rgba(255, 255, 255, 0.3); border-radius: 5px; transition: 0.3s; }
+        .nav a:hover { background: rgba(255, 255, 255, 0.6); }
+        .title { font-size: 50px; font-weight: bold; margin-bottom: 20px; }
+        .gallery { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 20px; }
+        .gallery img { width: 200px; height: 200px; border-radius: 10px; border: 2px solid white; transition: transform 0.3s; object-fit: cover; }
+        .gallery img:hover { transform: scale(1.1); }
+        .sound-toggle { position: absolute; bottom: 20px; right: 20px; background: rgba(255, 255, 255, 0.3); padding: 10px; border-radius: 5px; cursor: pointer; }
+        .content { display: none; padding: 20px; font-size: 18px; }
+        .active { display: block; }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <video id="bg-video" autoplay loop muted>
+            <source src="file:///C:/Users/97798/Downloads/Facebook_3.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="overlay">
+        <div class="nav">
+            <a href="#home" onclick="showTab('home')">Home</a>
+            <a href="#about" onclick="showTab('about')">About</a>
+            <a href="#gallery" onclick="showTab('gallery')">Gallery</a>
+            <a href="#contact" onclick="showTab('contact')">Contact</a>
+        </div>
+        <div class="title">Gurukul</div>
+        <div id="home" class="content active">Welcome to Gurukul, a place of knowledge and wisdom.</div>
+        <div id="about" class="content">Gurukul is an institution where students grow in discipline and learning.</div>
+        <div id="gallery" class="content">
+            <div class="gallery">
+                <img src="image1.jpg" alt="Post 1">
+                <img src="image2.jpg" alt="Post 2">
+                <img src="image3.jpg" alt="Post 3">
+                <img src="image4.jpg" alt="Post 4">
+                <img src="image5.jpg" alt="Post 5">
+                <img src="image6.jpg" alt="Post 6">
+                <img src="image7.jpg" alt="Post 7">
+                <img src="image8.jpg" alt="Post 8">
+                <img src="image9.jpg" alt="Post 9">
+                <img src="image10.jpg" alt="Post 10">
+            </div>
+        </div>
+        <div id="contact" class="content">Contact us at: info@gurukul.com</div>
+    </div>
+    <div class="sound-toggle" onclick="toggleSound()">🔊</div>
+    <script>
+        function toggleSound() {
+            let video = document.getElementById("bg-video");
+            let soundToggle = document.querySelector(".sound-toggle");
+            video.muted = !video.muted;
+            soundToggle.textContent = video.muted ? '🔇' : '🔊';
+        }
+        function showTab(tabId) {
+            let tabs = document.querySelectorAll(".content");
+            tabs.forEach(tab => tab.classList.remove("active"));
+            document.getElementById(tabId).classList.add("active");
+        }
+    </script>
+</body>
+</html>
